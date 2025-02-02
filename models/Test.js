@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
 
 const TestSchema = new mongoose.Schema({
-  qtId: { type: mongoose.Schema.Types.ObjectId, ref: "QuestionType" },
-  testId: { type: String, required: true },
-  catId: { type: String },
-  season: { type: String },
-  smId: { type: mongoose.Schema.Types.ObjectId, ref: "Material" },
-});
+  name: { type: String, required: true, unique: true },
+  season: { type: String, required: true },
+  quizzes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Quiz" }],
+}, { timestamps: true });
 
 const Test = mongoose.model("Test", TestSchema);
 export default Test;
